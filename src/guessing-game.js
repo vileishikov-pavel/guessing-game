@@ -6,19 +6,21 @@ class GuessingGame {
         for(min; min <= max; min++) {
             this.range.push(min);
         }
+        this.startIndex = 0;
+        this.endIndex = this.range.length - 1;
     }
 
     guess() {
-        this.index = Math.round(this.range.length / 2);
-        return this.range[this.index];
+        this.curIndex = Math.round((this.startIndex + this.endIndex) / 2);
+        return this.range[this.curIndex];
     }
 
     lower() {
-        this.range = this.range.slice(0, this.index);
+        this.endIndex = this.curIndex;
     }
 
     greater() {
-        this.range = this.range.slice(this.index, this.range.length);
+        this.startIndex = this.curIndex;
     }
 }
 
